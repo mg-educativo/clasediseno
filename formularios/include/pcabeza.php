@@ -1,3 +1,8 @@
+<?php
+    // incluimos conexion
+    include_once("./include/conexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

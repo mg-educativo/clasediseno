@@ -19,7 +19,7 @@ include_once("./include/pcabeza.php")
             </div>
 
             <div class="card-body">
-                <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="usuarios_crud.php?accion=INS" method="post" enctype="multipart/form-data" autocomplete="off">
 
                     <div class="form-group">
                         <label for="Nombre">Nombre*</label>
@@ -71,7 +71,7 @@ include_once("./include/pcabeza.php")
       <td>Mark</td>
       <td>@mdo</td>
       <td>Otto</td>
-      <td> <button type="button" class="btn btn-outline-primary"><i class="far fa-edit"></i> Editar </button> </td>
+      <td> <a class="btn btn-outline-primary" href="./usuarios_edit.php"><i class="far fa-edit"></i> Editar</a></td>
       <td> <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Anular </button> </td>
     </tr>
     <tr>
