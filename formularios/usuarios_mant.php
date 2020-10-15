@@ -1,5 +1,8 @@
 <?php
-include_once("./include/pcabeza.php")
+include_once("./include/pcabeza.php");
+
+$resultado = mostrarUsuarios($link);
+
 ?>
 
 <nav aria-label="breadcrumb">
@@ -8,6 +11,20 @@ include_once("./include/pcabeza.php")
         <li class="breadcrumb-item active" aria-current="page">Mantenimiento Usuarios</li>
     </ol>
 </nav>
+
+<?php 
+  if (isset($_SESSION['mensajeTexto'])) { ?>
+    <div class="alert <?php echo $_SESSION['mensajeTipo'] ?> alert-dismissible fade show" role="alert">
+      <strong>Aviso:</strong> <?php echo $_SESSION['mensajeTexto']?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php
+  // Limpio valores de sesion
+  session_unset();
+  }
+?>
 
 <div class="row">
 
@@ -62,33 +79,26 @@ include_once("./include/pcabeza.php")
       <th scope="col">Nombre</th>
       <th scope="col">Correo</th>
       <th scope="col">Usuario</th>
+      <th scope="col">Estado</th>
       <th scope="col"> </th>
       <th scope="col"> </th>
     </tr>
-  </thead>
+  </thead>            
   <tbody>
-    <tr>      
-      <td>Mark</td>
-      <td>@mdo</td>
-      <td>Otto</td>
-      <td> <a class="btn btn-outline-primary" href="./usuarios_edit.php"><i class="far fa-edit"></i> Editar</a></td>
-      <td> <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Anular </button> </td>
-    </tr>
-    <tr>
+    <?php 
+        while ($row = mysqli_fetch_array($resultado)) { ?>
+          <tr>
+            <td> <?php echo $row['NombreC'] ?> </td>
+            <td> <?php echo $row['Correo'] ?> </td>
+            <td> <?php echo $row['usuario'] ?> </td>
+            <td> <?php if ($row['estado'] == 'A'){echo 'Activo';} else{echo 'Inactivo';}?> </td>
+            <td> <a class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Editar" href="./usuarios_edit.php?accion=UDT&id=<?php echo $row['codusuarios'] ?>"><i class="far fa-edit"></i></a></td>
+            <td> <a class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Anular" href="./usuarios_crud.php?accion=DLT&id=<?php echo $row['codusuarios'] ?>"><i class="fas fa-trash"></i></a></td>            
+          </tr>  
+        <?php  
+        }    
+    ?>
 
-      <td>Jacob</td>
-      <td>@fat</td>
-      <td>Thornton</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Larry</td>
-      <td>@twitter</td>
-      <td>theBird</td>
-      <td> </td>
-      <td> </td>
-    </tr>
   </tbody>
 </table>
 

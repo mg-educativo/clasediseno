@@ -1,6 +1,8 @@
 <?php
     // incluimos conexion
     include_once("./include/conexion.php");
+    include_once("./include/consultas.php");
+
 ?>
 
 <!DOCTYPE html>

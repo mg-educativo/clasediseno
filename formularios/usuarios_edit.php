@@ -1,5 +1,16 @@
 <?php
-include_once("./include/pcabeza.php")
+include_once("./include/pcabeza.php");
+
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $row = consultarUsuarios($link, $id);            
+} else {
+    // este punto falto agregar en la clase
+    $_SESSION['mensajeTexto'] = "Error Actualizando el Registro";
+    $_SESSION['mensajeTipo'] = "alert-danger";
+
+    header("Location: admin.php");
+}
 ?>
 
     <nav aria-label="breadcrumb">
@@ -19,29 +30,38 @@ include_once("./include/pcabeza.php")
             </div>
 
             <div class="card-body">
-                <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
-
+                <form action="usuarios_crud.php?accion=UDT" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    <input type="hidden" name="id" id= "id" value="<?php echo $row['codusuarios']; ?> ">
+                                        
+                    <div class="form-group">
+                        <label for="Estado">Estado*</label>
+                        <select class="form-control border-input" required="" name="estado" id="estado">
+                            <option value="A" <?php if($row['estado'] == 'A'){echo "selected";}?>> Activo </option>
+                            <option value="I" <?php if($row['estado'] == 'I'){echo "selected";}?>> Inactivo </option>
+                        </select>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="Nombre">Nombre*</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombreAyuda" required="" placeholder="Ingresa Nombre" value="####">
+                        <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombreAyuda" required="" placeholder="Ingresa Nombre" value="<?php echo $row['NombreC']; ?>">
                         <small id="nombreAyuda" class="form-text text-muted">Este campo es obligatorio</small>
                     </div>
                     
                     <div class="form-group">
                         <label for="Nombre">Correo*</label>
-                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="correoAyuda" required="" placeholder="Ingresa Correo" value="####">
+                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="correoAyuda" required="" placeholder="Ingresa Correo" value="<?php echo $row['Correo']; ?>">
                         <small id="correoAyuda" class="form-text text-muted">Este campo es obligatorio</small>
                     </div>
                     
                     <div class="form-group">
                         <label for="Nombre">Usuario*</label>
-                        <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioAyuda" required="" placeholder="Ingresa Usuario" value="####">
+                        <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioAyuda" required="" placeholder="Ingresa Usuario" value="<?php echo $row['usuario']; ?>">
                         <small id="usuarioAyuda" class="form-text text-muted">Este campo es obligatorio</small>
                     </div>
                     
                     <div class="form-group">
                         <label for="Nombre">Contraseña*</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" aria-describedby="contrasenaAyuda" required="" placeholder="Ingresa Contraseña" value="####">
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" aria-describedby="contrasenaAyuda" required="" placeholder="Ingresa Contraseña" value="<?php echo $row['password']; ?>">
                         <small id="contrasenaAyuda" class="form-text text-muted">Este campo es obligatorio</small>
                     </div>
 
