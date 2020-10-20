@@ -23,3 +23,21 @@ function consultarUsuarios($link, $id){
     }    
 }
 
+function validarLogin($link, $user, $pass){
+
+    $query = "SELECT * FROM `usuarios` WHERE `usuario` = '$user' AND `password` = '$pass' AND `estado` = 'A'";
+    $resultado = mysqli_query($link, $query);
+
+    if (mysqli_num_rows($resultado) == 1) {
+        # code...
+        $row = $resultado ->fetch_assoc();
+        $_SESSION['codusuarios'] = $row['codusuarios'];
+        header("Location: admin.php");
+    } else {
+        # code...
+        $_SESSION['mensajeTexto'] = "Error Consultando Datos -> validarLogin";
+        $_SESSION['mensajeTipo'] = "alert-danger";
+    }
+    
+}
+

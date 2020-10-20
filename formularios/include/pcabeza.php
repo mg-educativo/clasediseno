@@ -3,6 +3,20 @@
     include_once("./include/conexion.php");
     include_once("./include/consultas.php");
 
+    if (isset($_SESSION['codusuarios'])) {
+        # code...
+        $idusuario = $_SESSION['codusuarios'];
+        $row = consultarUsuarios($link, $idusuario);
+
+    } 
+    else {
+        # code...
+        $_SESSION['mensajeTexto'] = "Error Acceso al Sistema no Registrado";
+        $_SESSION['mensajeTipo'] = "alert-danger";
+        header("Location: index.php");
+    }
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +62,9 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="admin.php">Inicio <span class="sr-only">(current)</span></a>
                 </li>
@@ -62,10 +77,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./usuarios_mant.php">Usuarios</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="index.php">Salir</a>
+                </li> -->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active">
+                    <p class="nav-link"><i class="fas fa-user"></i> <?php echo $row['NombreC'];?> </p>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./include/cerrar.php"> <i class="fas fa-sign-out-alt"></i> Salir </a>
                 </li>
             </ul>
+
         </div>
     </nav>
 

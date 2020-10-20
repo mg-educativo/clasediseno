@@ -1,3 +1,17 @@
+<?php
+include_once('./include/conexion.php');
+include_once('./include/consultas.php');
+
+if (!empty($_POST)) {
+    # code...
+    $usuario = htmlspecialchars($_POST['usuario']);
+    $password = htmlspecialchars($_POST['password']);
+    $password = sha1($password);
+
+    validarLogin($link, $usuario, $password);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +41,23 @@
 
 <body class="text-center">
 
+    <?php
+    if (isset($_SESSION['mensajeTexto'])) { ?>
+        <div class="alert <?php echo $_SESSION['mensajeTipo'] ?> alert-dismissible fade show" role="alert">
+            <strong>Aviso:</strong> <?php echo $_SESSION['mensajeTexto'] ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    <?php
+        // limpiar datos de sesion
+        // session_unset();
+        $_SESSION['mensajeTexto'] = null;
+        $_SESSION['mensajeTipo'] = null;
+    }
+    ?>
+
     <div class="container login-container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -37,7 +68,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="usuario">Usuario</label>
                                 <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Ingresar usuario" required>

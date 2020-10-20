@@ -22,7 +22,9 @@ $resultado = mostrarUsuarios($link);
     </div>
   <?php
   // Limpio valores de sesion
-  session_unset();
+  // session_unset();
+      $_SESSION['mensajeTexto'] = null;
+      $_SESSION['mensajeTipo'] = null;
   }
 ?>
 

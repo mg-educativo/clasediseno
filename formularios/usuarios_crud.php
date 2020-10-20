@@ -19,7 +19,7 @@
                 $nombre = $_POST['nombre'];
                 $correo = $_POST['correo'];
                 $usuario = $_POST['usuario'];
-                $contrasena = $_POST['contrasena'];
+                $contrasena = sha1($_POST['contrasena']);
 
                 $query = "
                     INSERT INTO `usuarios`
@@ -85,7 +85,7 @@
             $nombre = $_POST['nombre'];
             $correo = $_POST['correo'];
             $usuario = $_POST['usuario'];
-            $contrasena = $_POST['contrasena'];
+            $contrasena = sha1($_POST['contrasena']);
             $estado = $_POST['estado'];
 
             $query = "UPDATE `usuarios` SET 
