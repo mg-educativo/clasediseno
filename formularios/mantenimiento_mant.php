@@ -101,7 +101,7 @@ $resultadoTM = TipoMantenimiento($link);
             <td> <?php echo $row['valor_mantenimiento'] ?> </td>
             <td> <?php echo $row['descripcion'] ?> </td>
             <td> <?php if ($row['estado'] == 'A'){echo 'Activo';} else{echo 'Inactivo';}?> </td>
-            <td> <a class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Editar" href="./manteninimiento_edit.php?accion=UDT&id=<?php echo $row['codmantenimiento'] ?>"><i class="far fa-edit"></i></a></td>
+            <td> <a class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Editar" href="./mantenimiento_edit.php?accion=UDT&id=<?php echo $row['codmantenimiento'] ?>"><i class="far fa-edit"></i></a></td>
             <td> <a class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Anular" href="./mantenimiento_crud.php?accion=DLT&id=<?php echo $row['codmantenimiento'] ?>"><i class="fas fa-trash"></i></a></td>            
           </tr>  
         <?php  
