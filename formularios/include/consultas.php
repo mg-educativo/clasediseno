@@ -41,3 +41,28 @@ function validarLogin($link, $user, $pass){
     
 }
 
+function TipoMantenimiento($link){
+    $query = "SELECT * FROM `tipo_mantenimiento` WHERE `estado` = 'A'";
+    $resultado = mysqli_query($link, $query);
+
+    return $resultado;
+}
+
+function mostrarMantenimiento($link){
+    $query = "SELECT 
+    a.codmantenimiento, 
+    a.codtipo_mant, 
+    b.descripcion as tipo_mantenimiento,
+    DATE_FORMAT(a.fecha, '%d-%m-%Y') as fecha, 
+    a.valor_mantenimiento, 
+    a.descripcion, 
+    a.estado 
+    FROM `mantenimiento` a, `tipo_mantenimiento` b
+    WHERE a.estado = 'A' 
+    and a.codtipo_mant = b.codtipo_mant";
+
+    $resultado = mysqli_query($link, $query);
+
+    return $resultado;
+}
+

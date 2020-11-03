@@ -75,6 +75,9 @@
                     <a class="nav-link" href="#">Configuración</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="./mantenimiento_mant.php">Mantenimientos</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="./usuarios_mant.php">Usuarios</a>
                 </li>
                 <!-- <li class="nav-item">
