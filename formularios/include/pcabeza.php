@@ -6,6 +6,7 @@
     if (isset($_SESSION['codusuarios'])) {
         # code...
         $idusuario = $_SESSION['codusuarios'];
+        $tipousuario = $_SESSION['tipousuario'];        
         $row = consultarUsuarios($link, $idusuario);
 
     } 
@@ -32,7 +33,10 @@
 
     <!-- FontAwesone -->
     <link rel="stylesheet" href="./package/fontawesome-free-5.13.0-web/css/all.min.css">
-
+    
+    <!-- JQuery-Confirm -->
+    <link rel="stylesheet" href="./package/jquery-confirm-v3.3.4/dist/jquery-confirm.min.css">
+    
     <!-- JQuery -->
     <script src="./js/jquery-3.5.1.min.js"></script>
 
@@ -77,9 +81,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./mantenimiento_mant.php">Mantenimientos</a>
                 </li>
+                <?php if ($tipousuario == 1) { ?>
                 <li class="nav-item">
                     <a class="nav-link" href="./usuarios_mant.php">Usuarios</a>
                 </li>
+                <?php } ?>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="index.php">Salir</a>
                 </li> -->

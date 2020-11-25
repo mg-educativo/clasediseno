@@ -32,6 +32,7 @@ function validarLogin($link, $user, $pass){
         # code...
         $row = $resultado ->fetch_assoc();
         $_SESSION['codusuarios'] = $row['codusuarios'];
+        $_SESSION['tipousuario'] = $row['codtipo'];
         header("Location: admin.php");
     } else {
         # code...
